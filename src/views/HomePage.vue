@@ -12,7 +12,21 @@
 		</ion-header>
 
 		<ion-content :fullscreen="true" id="content">
-			<ion-searchbar color="dark"></ion-searchbar>
+			<ion-searchbar class="searchbar"></ion-searchbar>
+
+			<ion-list>
+				<div v-for="letter in Alphabet">
+					<ion-list-header
+						class="ml-2 text-lg font-bold"
+					>
+						{{ letter }}
+				</ion-list-header>
+
+					<ion-item v-for="meal in categorizedMeals?.[letter]">
+						{{ meal.strMeal }}
+					</ion-item>
+				</div>
+			</ion-list>
 		</ion-content>
 	</ion-page>
 </template>
@@ -23,7 +37,8 @@
 	import { ref } from 'vue';
 	import {
 		IonContent, IonHeader, IonPage, IonTitle,
-		IonToolbar, IonSearchbar
+		IonToolbar, IonSearchbar, IonList, IonListHeader,
+		IonItem,
 	} from '@ionic/vue';
 
 	import { Alphabet } from '@/utils/global';
@@ -96,10 +111,17 @@
 }
 
 #content {
+	--padding-top: 10px;
+	--padding-end: 10px;
+	--padding-bottom: 10px;
+	--padding-start: 10px;
+}
+.searchbar {
 	--background: #f4f1ea;
 	--color: #1f2937;
-	--padding-top: 16px;
-	--padding-bottom: 16px;
-	--offset-top: 0px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-inline-start: 0;
+	padding-inline-end: 0;
 }
 </style>
