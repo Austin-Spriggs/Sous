@@ -1,5 +1,5 @@
 <template>
-	<ion-page>
+	<ion-page id="main-content">
 		<ion-header :translucent="true">
 			<ion-toolbar>
 				<ion-title>
@@ -8,6 +8,9 @@
 						<span class="ml-3">Sous</span>
 					</div>
 				</ion-title>
+				<ion-buttons slot="end">
+					<ion-menu-button></ion-menu-button>
+				</ion-buttons>
 			</ion-toolbar>
 		</ion-header>
 
@@ -32,20 +35,32 @@
 </template>
 
 <script setup lang="ts">
+	// Globals
 	import '@/styles/global.css';
+	import { Alphabet } from '@/utils/global';
 
+	// Frameworks
 	import { ref } from 'vue';
 	import {
 		IonContent, IonHeader, IonPage, IonTitle,
 		IonToolbar, IonSearchbar, IonList, IonListHeader,
-		IonItem,
+		IonItem, IonButtons, IonMenuButton
 	} from '@ionic/vue';
 
-	import { Alphabet } from '@/utils/global';
+	// Components
+	import Menu from '@/components/Menu.vue';
 
+	/*
+		Refs
+	*/
 	const meals = ref();
 	const categorizedMeals = ref();
+	const filteredMeals = ref();
 
+
+	/*
+		Load Meals
+	*/
 	const getMeals = async () => {
 		const url = 'https://www.themealdb.com/api/json/v1/1/search.php';
 
@@ -75,6 +90,10 @@
 		} catch (e) {
 			console.log(e);
 		}
+	}
+
+	const search = () => {
+
 	}
 
 	getMeals();
