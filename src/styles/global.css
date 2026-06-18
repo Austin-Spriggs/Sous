@@ -1,0 +1,7 @@
+/*
+	Global css styles
+
+	! Include in all view files / anywhere daisyui is needed
+*/
+@import "tailwindcss";
+@plugin "daisyui";
